@@ -215,7 +215,8 @@ const updateBallTrajectory = (matchData, player, pointType) => {
   let player1Position = { x: 0.15, y: 0.5 };  // Default left side
   let player2Position = { x: 0.85, y: 0.5 };  // Default right side
   
-  const isServe = pointType === 'ace' || pointType === 'fault' || pointType === 'doubleFault';
+  // Check if this is a serve-related point type
+  if (pointType === 'ace' || pointType === 'fault' || pointType === 'doubleFault') {
   const isPlayer1Action = player === 'player1';
   
   // Generate random rally positions
