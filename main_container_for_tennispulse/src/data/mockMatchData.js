@@ -167,7 +167,7 @@ export const mockMatchData = {
     },
     {
       time: '2:44 PM',
-      content: 'Deuce after Djokovic's backhand down the line.',
+      content: "Deuce after Djokovic's backhand down the line.",
       type: 'winner',
       important: false
     },
