@@ -71,7 +71,7 @@ export const updateMatchScore = (matchData, player, pointType) => {
     }
   }
   
-  // Update player serving status if needed (after service game)
+  // Check if this is a serve-related point type
   if (pointType === 'ace' || pointType === 'fault' || pointType === 'doubleFault') {
     updatedMatch.lastPoint = {
       ...updatedMatch.lastPoint,
@@ -80,6 +80,23 @@ export const updateMatchScore = (matchData, player, pointType) => {
   }
 
   return updatedMatch;
+};
+
+// PUBLIC_INTERFACE
+/**
+ * Format a tennis score for display
+ * 
+ * @param {number} scoreValue - The numerical score value
+ * @returns {string} Formatted tennis score (Love, 15, 30, 40, etc.)
+ */
+export const formatTennisScore = (scoreValue) => {
+  switch (scoreValue) {
+    case 0: return "Love";
+    case 1: return "15";
+    case 2: return "30";
+    case 3: return "40";
+    default: return scoreValue.toString();
+  }
 };
 
 // Handle when a player wins a game
@@ -215,8 +232,6 @@ const updateBallTrajectory = (matchData, player, pointType) => {
   let player1Position = { x: 0.15, y: 0.5 };  // Default left side
   let player2Position = { x: 0.85, y: 0.5 };  // Default right side
   
-  // Check if this is a serve-related point type
-  if (pointType === 'ace' || pointType === 'fault' || pointType === 'doubleFault') {
   const isPlayer1Action = player === 'player1';
   
   // Generate random rally positions
@@ -299,21 +314,4 @@ const updateBallTrajectory = (matchData, player, pointType) => {
   };
   
   return matchData;
-};
-
-// PUBLIC_INTERFACE
-/**
- * Format a tennis score for display
- * 
- * @param {number} scoreValue - The numerical score value
- * @returns {string} Formatted tennis score (Love, 15, 30, 40, etc.)
- */
-export const formatTennisScore = (scoreValue) => {
-  switch (scoreValue) {
-    case 0: return "Love";
-    case 1: return "15";
-    case 2: return "30";
-    case 3: return "40";
-    default: return scoreValue.toString();
-  }
 };
