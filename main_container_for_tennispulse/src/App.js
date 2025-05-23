@@ -1,6 +1,17 @@
 import React from 'react';
 import './App.css';
+import { MatchContainer } from './components';
+import { MatchProvider } from './context/MatchContext';
 
+// PUBLIC_INTERFACE
+/**
+ * App - Main application component
+ * 
+ * Root component that renders the TennisPulse match UI container
+ * with proper context providers.
+ * 
+ * @returns {React.Component} The rendered application
+ */
 function App() {
   return (
     <div className="app">
@@ -8,28 +19,33 @@ function App() {
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
             <div className="logo">
-              <span className="logo-symbol">*</span> KAVIA AI
+              <span className="logo-symbol">🎾</span> TennisPulse
             </div>
-            <button className="btn">Template Button</button>
+            <div className="nav-actions">
+              <button className="btn">Live Matches</button>
+            </div>
           </div>
         </div>
       </nav>
 
-      <main>
+      <main className="main-content">
         <div className="container">
-          <div className="hero">
-            <div className="subtitle">AI Workflow Manager Template</div>
-            
-            <h1 className="title">main_container_for_tennispulse</h1>
-            
-            <div className="description">
-              Start building your application.
-            </div>
-            
-            <button className="btn btn-large">Button</button>
+          <div className="match-container-wrapper">
+            <MatchProvider>
+              <MatchContainer />
+            </MatchProvider>
           </div>
         </div>
       </main>
+      
+      <footer className="footer">
+        <div className="container">
+          <div className="footer-content">
+            <p>TennisPulse: Immersive Match UI</p>
+            <p className="footer-tagline">Experience tennis like never before</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
